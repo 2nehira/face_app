@@ -13,7 +13,7 @@ def convert_face(original_path, convert_path):
 
   face_locations = face_recognition.face_locations(rgb_origin)
 
-  if(face_locations):
+  if face_locations:
     for (top, right, bottom, left) in face_locations:
       diff = 0
       top += diff
@@ -28,6 +28,18 @@ def convert_face(original_path, convert_path):
       resize_face = cv2.resize(face, (x_size, y_size))
       origin[top:bottom, left:right] = resize_face
     cv2.imwrite(original_path, origin)
+    return True
+  else:
+    return False
+
+def face_detection(add_image_path):
+  image = cv2.imread(add_image_path)
+  rgb_image = image[:,:, ::-1]
+  face_locations = face_recognition.face_locations(rgb_image)
+  if len(face_locations) == 1:
+    top, right, bottom, left = face_locations[0]
+    face = image[top:bottom, left:right]
+    cv2.imwrite('face_app/static/convert.jpg', face)
     return True
   else:
     return False

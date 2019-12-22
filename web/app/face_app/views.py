@@ -14,7 +14,6 @@ def convert():
 
 @app.route('/result', methods=['POST'])
 def result():
-  print('result')
   f = request.files['image']
   
   original_path = '/static/original.' + f.filename.rsplit('.', 1)[1].lower()
@@ -33,4 +32,11 @@ def edit():
 
 @app.route('/add', methods=['POST'])
 def add_face():
-  return render_template('edit.html')
+  f = request.files['image']
+  add_image_path = '/static/add_image.' + f.filename.rsplit('.', 1)[1].lower()
+  f.save('face_app' + add_image_path)
+  if(face.face_detection('face_app' + add_image_path)):
+    return render_template('edit_result.html', image_path='/static/convert.jpg')
+  else:
+    flash('顔が検出されなかった、複数あります')
+    return redirect(url_for('edit'))
