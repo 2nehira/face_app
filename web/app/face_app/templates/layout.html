@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FaceApp</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="{{ url_for('hello') }}">home</a></li>
+      <li><a href="{{ url_for('convert') }}">convert</a></li>
+      <li><a href="{{ url_for('edit') }}">edit</a></li>
+    </ul>
+    {% block body %}{% endblock %}
+  </body>
+</html>
