@@ -5,6 +5,7 @@
   <h3>{{ message }}</h3>
   {% endfor %}
   <form method="POST" action="/add" enctype="multipart/form-data">
+    <input placeholder="名前" name="facename" type="text"/>
     <input type="file" name="image"/>
     <input value="送信" type="submit"/>
   </form>

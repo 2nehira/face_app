@@ -5,6 +5,16 @@
   <h3>{{ message }}</h3>
   {% endfor %}
   <form method="POST" action="/result" enctype="multipart/form-data">
+    <div class="selection">
+      <p>
+        <input id="obama" type="radio" name="facename" value="obama" checked/>
+        <label for="obama"><img src="/static/sample_face.jpg"></label>
+        {% for face in faces %}
+        <input id="{{face.facename}}" type="radio" name="facename" value="{{face.facename}}"/>
+        <label for="{{face.facename}}"><img src="{{face.face_image_url}}"></label>
+        {% endfor %}
+      </p>
+    </div>
     <input type="file" name="image"/>
     <input value="送信" type="submit"/>
   </form>

@@ -3,12 +3,8 @@ import cv2
 import numpy as np
 
 def convert_face(original_path, convert_path):
-  print(original_path)
-  print(convert_path)
   origin = cv2.imread(original_path)
   face = cv2.imread(convert_path)
-  print(origin.shape)
-  print(face.shape)
   rgb_origin = origin[:, :, ::-1]
 
   face_locations = face_recognition.face_locations(rgb_origin)
@@ -23,8 +19,6 @@ def convert_face(original_path, convert_path):
 
       x_size = right - left
       y_size = bottom - top
-      print('top:' + str(top) + ' bottom:' + str(bottom) + ' right:' + str(right) + ' left:' + str(left))
-      print('x_size:' + str(x_size) + ' y_size:' + str(y_size))
       resize_face = cv2.resize(face, (x_size, y_size))
       origin[top:bottom, left:right] = resize_face
     cv2.imwrite(original_path, origin)
@@ -39,7 +33,7 @@ def face_detection(add_image_path):
   if len(face_locations) == 1:
     top, right, bottom, left = face_locations[0]
     face = image[top:bottom, left:right]
-    cv2.imwrite('face_app/static/convert.jpg', face)
+    cv2.imwrite(add_image_path, face)
     return True
   else:
     return False
