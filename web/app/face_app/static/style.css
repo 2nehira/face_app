@@ -1,0 +1,26 @@
+.selection input[type="radio"] {
+  display: none;
+}
+
+label img {
+  margin: 3px;
+  padding: 8px;
+}
+.selection input[type="radio"]:checked + label img {
+  background: orange;
+}
+.selection input[type="radio"] + label{
+  display    : inline-block;
+  margin     : 5px;             /* labelの間隔  */
+  opacity    : 0.7;             /* 透明度       */
+  cursor     : pointer;         /* カーソル設定 */
+  transition : .2s;             /* なめらか変化 */
+  transform  : scale(0.9, 0.9); /* 少し小さく   */
+}
+.selection input[type="radio"]:checked + label {
+  opacity    : 1;               /* 透明度       */
+  transform  : scale(1, 1);     /* 原寸に戻す   */
+} */
+.selection input[type="radio"]:not(:checked) + label:hover {
+  opacity    : 0.9;             /* 透明度       */
+}
