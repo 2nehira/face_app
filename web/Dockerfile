@@ -1,7 +1,13 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
-# RUN apt-get -y update
-RUN apt install python3.5 python3-pip=19.3.1
+RUN apt-get -y update
+RUN apt install python3.5 python3-pip
+RUN pip3 install --upgrade pip
+
+ADD app /app
+ADD a.sh /app/a.sh
+RUN chmod 755 /app/a.sh
+
 RUN apt-get install -y --fix-missing \
     build-essential \
     cmake \
@@ -11,7 +17,7 @@ RUN apt-get install -y --fix-missing \
     curl \
     graphicsmagick \
     libgraphicsmagick1-dev \
-    libatlas-dev \
+    libatlas-base-dev \
     libavcodec-dev \
     libavformat-dev \
     libgtk2.0-dev \
@@ -31,17 +37,13 @@ RUN RUN cd ~ && \
     cd  dlib/ && \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
-COPY . /root/face_recognition
-RUN cd /root/face_recognition && \
-    pip3 install -r requirements.txt && \
-    python3 setup.py install
+# COPY . /root/face_recognition
+# RUN cd /root/face_recognition && \
+#     pip3 install -r requirements.txt && \
+#     python3 setup.py install
 
 RUN pip3 install Flask SQLAlchemy flask-sqlalchemy PyMySQL Flask-Migrate opencv-python
 
 
 WORKDIR /app
-CMD export FLASK_APP=run.py
-CMD flask db init
-CMD flask db migrate
-CMD flask db upgrade
-CMD flask run
+CMD ./a.sh
