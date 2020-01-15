@@ -8,10 +8,10 @@
     <div class="selection">
       <p>
         <input id="obama" type="radio" name="facename" value="obama" checked/>
-        <label for="obama"><img src="/static/sample_face.jpg"></label>
+        <label for="obama"><img src="/static/sample_face.jpg" height="250"></label>
         {% for face in faces %}
         <input id="{{face.facename}}" type="radio" name="facename" value="{{face.facename}}"/>
-        <label for="{{face.facename}}"><img src="{{face.face_image_url}}"></label>
+        <label for="{{face.facename}}"><img src="{{face.face_image_url}}" height="250"></label>
         {% endfor %}
       </p>
     </div>

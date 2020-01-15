@@ -42,7 +42,7 @@ RUN cd ~ && \
 #     pip3 install -r requirements.txt && \
 #     python3 setup.py install
 RUN pip3 install face_recognition
-RUN pip3 install Flask SQLAlchemy flask-sqlalchemy PyMySQL Flask-Migrate opencv-python
+RUN pip3 install Flask SQLAlchemy flask-sqlalchemy PyMySQL Flask-Migrate numpy opencv-python
 
 
 WORKDIR /app

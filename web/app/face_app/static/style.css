@@ -24,3 +24,9 @@ label img {
 .selection input[type="radio"]:not(:checked) + label:hover {
   opacity    : 0.9;             /* 透明度       */
 }
+
+#nav li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 30px;
+}
